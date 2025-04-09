@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
+  <head>
+    <title></title>
+    <meta charset="UTF-8" />
+    <base href="https://www.cmg.co.th/" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+   
+  
+    <script type="text/javascript">
+      var tempJavaScriptPreload,
+        tempCssPreload,
+        tempAsyncJS,
+        tempCallbackFunction,
+        tempCountCss = 0,
+        onloadCount = 0,
+        tempCssLoadStatus = [];
+      function loadCss(e) {
+        if (typeof tempCssPreload != "undefined") {
+          var n = function () {
+              if (++onloadCount != 2) return;
+              var s = document.createElement("link");
+              s.rel = "stylesheet";
+              var e = [],
+                i = document.getElementsByTagName("head")[0],
+                n,
+                a;
+              for (var t in tempCssPreload) {
+                if (
+                  tempCssPreload[t] != "" &&
+                  /\.css$/.test(tempCssPreload[t])
+                ) {
+                  e[t] = s.cloneNode();
+                  e[t].href = tempCssPreload[t];
+                  if (typeof n == "undefined" || typeof n == "cssRules") {
+                    if ("sheet" in e[t]) {
+                      n = "sheet";
+                      a = "cssRules";
+                    } else {
+                      n = "styleSheet";
+                      a = "rules";
+                    }
+                  }
+                  i.appendChild(e[t]);
+                  tempCssLoadStatus[t] = !1;
+                }
+              }
+              var o = setInterval(function () {
+                try {
+                  for (var t in e) {
+                    if (e[t][n] && e[t][n][a].length) {
+                      tempCssLoadStatus[t] = !0;
+                    }
+                  }
+                  var i = !0;
+                  for (var s in tempCssLoadStatus) {
+                    if (tempCssLoadStatus[t] == !1) {
+                      i = !1;
+                    }
+                  }
+                  if (i == !0) {
+                    clearInterval(o);
+                    clearTimeout(timeout_preload);
+                    loadJS();
+                  }
+                } catch (d) {
+                } finally {
+                }
+              }, 50);
+              timeout_preload = setTimeout(function () {
+                clearInterval(o);
+                clearTimeout(timeout_preload);
+                for (var t in e) {
+                  i.removeChild(e[t]);
+                }
+                loadJS();
+              }, 15000);
+            },
+            t;
+          if (typeof requestAnimationFrame != "undefined") {
+            t = requestAnimationFrame;
+          } else if (typeof mozRequestAnimationFrame != "undefined") {
+            t = mozRequestAnimationFrame;
+          } else if (typeof webkitRequestAnimationFrame != "undefined") {
+            t = webkitRequestAnimationFrame;
+          } else if (typeof msRequestAnimationFrame != "undefined") {
+            t = msRequestAnimationFrame;
+          }
+          if (t) {
+            t(function () {
+              n();
+            });
+          } else {
+            onloadCount++;
+          }
+          if (typeof window.onload == "function") {
+            var a = window.onload;
+            window.onload = function () {
+              a();
+              n();
+            };
+          } else {
+            window.onload = function () {
+              n();
+            };
+          }
+        } else {
+          loadJS();
+        }
+      }
+      function initFileload(e, n, t) {
+        var o = e;
+        if (typeof t != "undefined") {
+          if (typeof t.callback != "undefined") {
+            tempCallbackFunction = t.callback;
+          }
+        }
+        tempCssPreload = e;
+        tempJavaScriptPreload = n;
+        var a = document.getElementsByTagName("body");
+        if (a.length > 0) {
+          loadCss(t);
+        }
+      }
+      function loadJS(e) {
+        if (
+          typeof tempJavaScriptPreload != "undefined" &&
+          tempJavaScriptPreload.length > 0
+        ) {
+          if (e == null) {
+            e = 0;
+          }
+          if (typeof tempJavaScriptPreload[e] != "undefined") {
+            if (
+              tempJavaScriptPreload[e] != "" &&
+              /\.js$/.test(tempJavaScriptPreload[e])
+            ) {
+              var t = document.createElement("script");
+              t.type = "text/javascript";
+              t.src = tempJavaScriptPreload[e];
+              if (typeof tempJavaScriptPreload[e + 1] != "undefined") {
+                t.onload = function () {
+                  loadJS(e + 1);
+                };
+              } else {
+                t.onload = function () {
+                  loadAsyncJS();
+                };
+              }
+              document.body.appendChild(t);
+            } else {
+              if (typeof tempJavaScriptPreload[e + 1] != "undefined") {
+                loadJS(e + 1);
+              } else {
+                loadAsyncJS();
+              }
+            }
+          }
+        } else {
+          loadAsyncJS();
+        }
+      }
+      function initLoadAsyncJS(e) {
+        if (typeof tempAsyncJS == "undefined") {
+          tempAsyncJS = e;
+        } else {
+          for (var t in e) {
+            tempAsyncJS.push(e.shift());
+          }
+        }
+      }
+      function loadAsyncJS(e) {
+        if (typeof tempAsyncJS != "undefined") {
+          if (e == null) {
+            e = 0;
+          }
+          if (tempAsyncJS[e] != "" && /\.js$/.test(tempAsyncJS[e])) {
+            var t = document.createElement("script");
+            t.setAttribute("defer", "defer");
+            t.type = "text/javascript";
+            t.src = tempAsyncJS[e];
+            if (typeof tempAsyncJS[e + 1] != "undefined") {
+              loadAsyncJS(e + 1);
+            } else {
+              runCallBack();
+            }
+            document.body.appendChild(t);
+          } else {
+            if (typeof tempAsyncJS[e + 1] != "undefined") {
+              loadAsyncJS(e + 1);
+            } else {
+              runCallBack();
+            }
+          }
+        } else {
+          runCallBack();
+        }
+      }
+      function runCallBack() {
+        if (typeof tempCallbackFunction != "undefined") {
+          tempCallbackFunction();
+        }
+      }
+      function plainFade() {
+        var t =
+            ".hidebody {display: block;opacity: 0; }.showbody {opacity: 1;display: block;transition: opacity 0.5s ease-out;}",
+          a = document.getElementsByTagName("head")[0],
+          e = document.createElement("style");
+        e.setAttribute("id", "preloadCss");
+        e.setAttribute("type", "text/css");
+        var n = navigator.userAgent;
+        if (n.indexOf("MSIE 8") > -1) {
+          e.styleSheet.cssText = t;
+        } else {
+          e.innerHTML = t;
+        }
+        a.appendChild(e);
+        addClass(document.body, "hidebody");
+      }
+      function fadeBodyIn() {
+        addClass(document.body, "loaded");
+        setTimeout(function () {
+          addClass(document.body, "showbody");
+          setTimeout(function () {
+            removeClass(document.body, "hidebody");
+            removeClass(document.body, "showbody");
+            if (typeof window.OMPageLoaded == "function") {
+              window.OMPageLoaded();
+            }
+          }, 500);
+        }, 500);
+      }
+      function addClass(e, t) {
+        var n = e.className;
+        if (n.indexOf(t) != -1) {
+          return;
+        }
+        if (n != "") {
+          t = " " + t;
+        }
+        e.className = n + t;
+      }
+      function removeClass(e, t) {
+        var n = e.className,
+          a = new RegExp("\\s?\\b" + t + "\\b", "g");
+        n = n.replace(a, "");
+        e.className = n;
+      }
+      function queueFnc() {
+        var e = [];
+        this.add = function (t) {
+          if (t) {
+            if (typeof t == "string" && typeof window[t] == "function") {
+              t = window[t];
+            }
+            if (typeof t == "function") {
+              e.push(t);
+            }
+          }
+        };
+        this.next = function () {
+          if (e.length > 0) {
+            e.shift()();
+          }
+        };
+        this.run = function () {
+          this.next();
+        };
+        this.len = function () {
+          return e.length;
+        };
+        this.runAll = function () {
+          while (this.len() > 0) {
+            this.next();
+          }
+        };
+      }
+      var OMQ = new queueFnc();
+    </script>
+    <style type="text/css">
+      a {
+        outline: 0 none;
+        cursor: pointer;
+        text-decoration: none;
+        color: inherit;
+      }
+      a:link {
+        -webkit-tap-highlight-color: #0080c6;
+      }
+      iframe {
+        border: none;
+      }
+      img {
+        border: 0;
+        -ms-interpolation-mode: bicubic;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0;
+        font-weight: normal;
+        text-rendering: optimizeLegibility;
+        zoom: 1;
+        display: block;
+        font-family: "Prompt", sans-serif;
+      }
+      blockquote:before,
+      blockquote:after,
+      q:before,
+      q:after {
+        content: "";
+        content: none;
+      }
+      del {
+        text-decoration: line-through;
+      }
+      abbr[title],
+      dfn[title] {
+        border-bottom: 1px dotted #000;
+        cursor: help;
+      }
+      p {
+        margin: 0;
+        font-size: inherit;
+        font-weight: inherit;
+      }
+      nav ul {
+        list-style: none;
+      }
+      hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ccc;
+        margin: 1em 0;
+        padding: 0;
+      }
+      input,
+      select {
+        vertical-align: middle;
+        overflow: hidden;
+      }
+      input {
+        padding: 0;
+        -webkit-appearance: none;
+        -webkit-border-radius: 0px;
+        border: none;
+        background-color: transparent;
+        color: inherit;
+      }
+      textarea {
+        overflow: auto;
+        resize: none;
+        color: inherit;
+      }
+      input[type="radio"] {
+        vertical-align: text-bottom;
+      }
+      input[type="checkbox"] {
+        vertical-align: bottom;
+        vertical-align: baseline;
+        margin: 3px 3px 0 0;
+      }
+      input[type="text"],
+      input[type="search"] {
+        -webkit-appearance: none;
+        -webkit-box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+      button {
+        width: auto;
+        overflow: visible;
+        border: 0;
+        background: transparent;
+        padding: 0;
+        cursor: pointer;
+      }
+      .ie6 input {
+        vertical-align: text-bottom;
+      }
+      .clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+      }
+      .clearfix {
+        display: inline-block;
+      }
+      * html .clearfix {
+        height: 1%;
+        font-size: 0px;
+      }
+      .clearfix {
+        display: block;
+        clear: both;
+      }
+      .default_css ul li {
+        list-style-type: disc;
+      }
+      .default_css ul ul li {
+        list-style-type: circle;
+        margin: 0px 0 0 16px;
+      }
+      .default_css ol li {
+        list-style-type: decimal;
+      }
+      .default_css ol li,
+      .default_css ul li {
+        margin: 0px 0 0 20px;
+        overflow: visible;
+      }
+      .default_css p {
+        margin: 15px 0;
+      }
+      .default_css a {
+        color: #666;
+        text-decoration: none;
+        cursor: pointer;
+        cursor: hand;
+      }
+      .default_css a:hover {
+        text-decoration: underline;
+      }
+      :focus {
+        outline: 0;
+      }
+      .font-smooth {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-overflow-scrolling: touch;
+        font-weight: normal;
+      }
+  
+   
+     
+     
+     
+      .page-name {
+        width: 100%;
+        padding: 0 20px;
+        background: #ffffff;
+        -webkit-transition: background 2s;
+        -moz-transition: background 2s;
+        -ms-transition: background 2s;
+        -o-transition: background 2s;
+        transition: background 2s;
+      }
+      .page-name.change-bg {
+        background: #f1f1f1;
+      }
+      .page-name .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .navigation-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .navigation-box .img-next {
+        width: 110px;
+        height: 70px;
+        margin-right: 15px;
+      }
+      .navigation-box .img-next img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .navigation-box .arrow-box {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .navigation-box .arrow-box > div:not(.new-st-pagination) {
+        min-width: 25px;
+        min-height: 25px;
+        border: solid 1px #d8d8d8;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+      }
+      .navigation-box .arrow-box > div:not(.new-st-pagination):after {
+        content: "";
+        width: 5px;
+        height: 9px;
+        background-image: url(images/layout/icon-sprite.svg);
+        background-repeat: no-repeat;
+        background-position: -254px -5px;
+      }
+      .navigation-box .arrow-box > div:not(.new-st-pagination):hover:after {
+        background-position: -274px -5px;
+      }
+      .navigation-box
+        .arrow-box
+        > div:not(.new-st-pagination).swiper-button-disabled {
+        opacity: 0.6;
+        cursor: none;
+      }
+      .navigation-box .arrow-box > div:not(.new-st-pagination).new-st-prev {
+        transform: rotate(180deg);
+      }
+      .navigation-box .arrow-box .new-st-pagination {
+        font-size: 12px;
+        line-height: 19px;
+        margin: 0 13px;
+        color: #000;
+      }
+      .navigation-box .arrow-box.white > div:not(.new-st-pagination) {
+        border: solid 1px #fff;
+      }
+      .navigation-box .arrow-box.white > div:not(.new-st-pagination):after {
+        filter: brightness(0) invert(1);
+      }
+      .navigation-box .arrow-box.white .new-st-pagination {
+        color: #fff;
+      }
+      .navigation-box
+        .arrow-box.white
+        > div:not(.new-st-pagination):hover:after {
+        filter: unset;
+      }
+      #cursor {
+        position: fixed;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        pointer-events: none;
+        z-index: 99999;
+      }
+      #cursor #cursor-web {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        pointer-events: none;
+        transition: transform 0.3s ease-in-out;
+        transform: scale(0.8);
+        z-index: 99999;
+      }
+      #cursor #cursor-web:after {
+        content: "";
+        width: 20px;
+        height: 20px;
+        background: #224099;
+        background-size: contain;
+        border-radius: 50%;
+        display: block;
+      }
+      #cursor #cursor-web.finger.hover:after {
+        transition: background 0.3s;
+        background: url("images/layout/curser-finger.svg");
+        background-position: center;
+        background-size: contain;
+      }
+      #cursor #cursor-web.hand.hover:after {
+        transition: background 0.3s;
+        background: url("images/layout/curser-hand.svg");
+        background-position: center;
+        background-size: contain;
+      }
+      #cursor #cursor-web.next.hover {
+        transform: scale(1) !important;
+      }
+      #cursor #cursor-web.next.hover:after {
+        transition: background 0.3s;
+        background: url("images/layout/slide-next.svg");
+        background-position: center;
+        background-size: contain;
+        width: 60px;
+        height: 60px;
+      }
+      #cursor #cursor-web.back.hover {
+        transform: scale(1) !important;
+      }
+  
+      @media (min-width: 768px) and (max-width: 991px) {
+        .hide-sm {
+          display: none !important;
+        }
+        .show-xs,
+        .show-md,
+        .show-lg {
+          display: none !important;
+        }
+      }
+      @media (min-width: 992px) and (max-width: 1199px) {
+        .hide-md {
+          display: none !important;
+        }
+        .show-xs,
+        .show-sm,
+        .show-lg {
+          display: none !important;
+        }
+      }
+      @media (min-width: 1200px) {
+        .hide-lg {
+          display: none !important;
+        }
+        .show-xs,
+        .show-sm,
+        .show-md {
+          display: none !important;
+        }
+      }
+      .font-smooth {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-overflow-scrolling: touch;
+        font-weight: normal;
+      }
+      .animate {
+        opacity: 0;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+        filter: alpha(opacity=0);
+        -khtml-opacity: 0;
+        -moz-opacity: 0;
+        -webkit-transition-property: opacity;
+        -moz-transition-property: opacity;
+        -ms-transition-property: opacity;
+        -o-transition-property: opacity;
+        transition-property: opacity;
+        -webkit-transition-duration: 500ms;
+        -moz-transition-duration: 500ms;
+        -ms-transition-duration: 500ms;
+        -o-transition-duration: 500ms;
+        transition-duration: 500ms;
+        -webkit-transition-timing-function: ease;
+        -moz-transition-timing-function: ease;
+        -ms-transition-timing-function: ease;
+        -o-transition-timing-function: ease;
+        transition-timing-function: ease;
+      }
+      .animate.delay0 {
+        -webkit-transition-delay: 0ms;
+        -moz-transition-delay: 0ms;
+        -ms-transition-delay: 0ms;
+        -o-transition-delay: 0ms;
+        transition-delay: 0ms;
+      }
+      .animate.delay1 {
+        -webkit-transition-delay: 100ms;
+        -moz-transition-delay: 100ms;
+        -ms-transition-delay: 100ms;
+        -o-transition-delay: 100ms;
+        transition-delay: 100ms;
+      }
+      .animate.delay2 {
+        -webkit-transition-delay: 200ms;
+        -moz-transition-delay: 200ms;
+        -ms-transition-delay: 200ms;
+        -o-transition-delay: 200ms;
+        transition-delay: 200ms;
+      }
+      .animate.delay5 {
+        -webkit-transition-delay: 500ms;
+        -moz-transition-delay: 500ms;
+        -ms-transition-delay: 500ms;
+        -o-transition-delay: 500ms;
+        transition-delay: 500ms;
+      }
+      .animate.delay7 {
+        -webkit-transition-delay: 500ms;
+        -moz-transition-delay: 500ms;
+        -ms-transition-delay: 500ms;
+        -o-transition-delay: 500ms;
+        transition-delay: 500ms;
+      }
+      .animate.delay10 {
+        -webkit-transition-delay: 1s;
+        -moz-transition-delay: 1s;
+        -ms-transition-delay: 1s;
+        -o-transition-delay: 1s;
+        transition-delay: 1s;
+      }
+      .animate.delay15 {
+        -webkit-transition-delay: 1.5s;
+        -moz-transition-delay: 1.5s;
+        -ms-transition-delay: 1.5s;
+        -o-transition-delay: 1.5s;
+        transition-delay: 1.5s;
+      }
+      .animate.delay20 {
+        -webkit-transition-delay: 2s;
+        -moz-transition-delay: 2s;
+        -ms-transition-delay: 2s;
+        -o-transition-delay: 2s;
+        transition-delay: 2s;
+      }
+      .animate.top {
+        -webkit-transform: translate(0, 100px);
+        -moz-transform: translate(0, 100px);
+        -ms-transform: translate(0, 100px);
+        -o-transform: translate(0, 100px);
+        transform: translate(0, 100px);
+        -webkit-transition-property: opacity, transform;
+        -moz-transition-property: opacity, transform;
+        -ms-transition-property: opacity, transform;
+        -o-transition-property: opacity, transform;
+        transition-property: opacity, transform;
+        -webkit-transition-duration: 500ms, 500ms;
+        -moz-transition-duration: 500ms, 500ms;
+        -ms-transition-duration: 500ms, 500ms;
+        -o-transition-duration: 500ms, 500ms;
+        transition-duration: 500ms, 500ms;
+        -webkit-transition-timing-function: ease, ease;
+        -moz-transition-timing-function: ease, ease;
+        -ms-transition-timing-function: ease, ease;
+        -o-transition-timing-function: ease, ease;
+        transition-timing-function: ease, ease;
+      }
+      .animate.play {
+        opacity: 1 !important;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+        filter: alpha(opacity=100) !important;
+        -khtml-opacity: 1 !important;
+        -moz-opacity: 1 !important;
+      }
+      .stop-animate {
+        opacity: 1 !important;
+        -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=100)" !important;
+        filter: alpha(opacity=100) !important;
+        -khtml-opacity: 1 !important;
+        -moz-opacity: 1 !important;
+        -webkit-transition-property: all;
+        -moz-transition-property: all;
+        -ms-transition-property: all;
+        -o-transition-property: all;
+        transition-property: all;
+        -webkit-transition-duration: 300ms;
+        -moz-transition-duration: 300ms;
+        -ms-transition-duration: 300ms;
+        -o-transition-duration: 300ms;
+        transition-duration: 300ms;
+      }
+      .animate.play.top {
+        -webkit-transform: translate(0, 0);
+        -moz-transform: translate(0, 0);
+        -ms-transform: translate(0, 0);
+        -o-transform: translate(0, 0);
+        transform: translate(0, 0);
+      }
+    
+      .title-year {
+    color: #224099 !important;
+    font-family: "Prompt", sans-serif;
+    font-size: 25px !important;
+    font-weight: 500;
+  }
+  
+  .head{
+    font-family: "Prompt", sans-serif;
+    font-size: 20px;
+    color: #2A3040;
+    font-weight: 600;
+
+  }
+  .our-history .slide-box .swiper-container .swiper-slide .img-box img{
+    border-radius: 20px;
+  }
+     
+   
+    </style>
+   
+  </head>
+  <body class="font-face lang-eng">
+    <script type="text/javascript">
+      plainFade();
+    </script>
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-9YG2JHDZWP"
+    ></script>
+    
+    <div class="page-wrapper">
+      <header id="header_cmg">
+      
+        
+     
+      </header>
+      <section id="content">
+        <div class="page-who-we-are">
+         
+         
+          <div class="container-who-we-are">
+            <div class="our-history animate delay2" data-animate="top">
+             
+              <div class="slide-box animate delay2" data-animate="top">
+                <div class="swiper-container mySwiper_history">
+                  <!-- <div class="navigation-box hide-xs">
+                    <div class="arrow-box">
+                      <div class="new-st-prev curser-finger history-prev"></div>
+                      <div class="new-st-pagination font-face-bold"></div>
+                      <div class="new-st-next curser-finger history-next"></div>
+                    </div>
+                  </div> -->
+                  <div class="swiper-wrapper curser-hand">
+                    <input type="hidden" value="5" id="total_our_history" />
+                    <div
+                      data-id="0"
+                      class="swiper-slide history-box"
+                      data-swiper-autoplay="5000"
+                    >
+                      <div class="img-box">
+                        <picture>
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-57.png"
+                            type="image/webp"
+                          />
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-57.png"
+                          />
+                          <img
+                            width="530"
+                            height="400"
+                            class="lazyload"
+                            data-src="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-57.png"
+                            alt="central bookstore"
+                          />
+                        </picture>
+                      </div>
+                      <div class="desc font-face-regular">
+                        <h2 class="title-year font-face-bold">ก่อนปี พ.ศ. 2500 – 2530
+                        </h2>
+                        <h3 class="head font-face-bold">
+                          การสร้างบ้านในไทยนิยมใช้ไม้เป็นวัสดุหลัก
+                        </h3>
+                        <h4>
+                          เนื่องจากป่าไม้มีความอุดมสมบูรณ์และราคาถูก บ้านไม้ต้องใช้ช่างไม้ฝีมือดีที่สืบทอดความชำนาญรุ่นต่อรุ่น
+                          เมื่อป่าไม้ลดลง วัสดุประเภทอิฐและคอนกรีตเสริมเหล็กได้รับความนิยมมากขึ้น การสร้างบ้านเริ่มต้องอาศัยวิศวกรและสถาปนิกอย่างเป็นระบบ การก่อสร้างเริ่มเน้นมาตรฐานและความแข็งแรง
+                          
+                        </h4>
+                      </div>
+                    </div>
+                    <div
+                      data-id="1"
+                      class="swiper-slide history-box"
+                      data-swiper-autoplay="5000"
+                    >
+                      <div class="img-box">
+                        <picture>
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-58.png"
+                            type="image/webp"
+                          />
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-58.png"
+                          />
+                          <img
+                            width="530"
+                            height="400"
+                            class="lazyload"
+                            data-src="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-58.png  "
+                            alt="Screen Shot 2565-10-11 at 15.06.54"
+                          />
+                        </picture>
+                      </div>
+                      <div class="desc font-face-regular">
+                        <h2 class="title-year font-face-bold">พ.ศ. 2530 – 2537
+                        </h2>
+                        <h3 class="head font-face-bold">ธุรกิจรับสร้างบ้านเริ่มต้นในไทย โดย บริษัท ซีคอน จำกัด เป็นผู้ริเริ่ม</h3>
+                        <h4>
+                          จากนั้นผู้ประกอบการรายอื่น เช่น อาทิ บริษัท โฟร์พัฒนา จำกัด , บริษัท รอแยลเฮ้าส์ จำกัด, บริษัท เดอะโมเดอร์นกรุ๊ป เรียล พร็อพเพอทิ จำกัด , บริษัท เมคเคอร์ แอนด์ เดคเคอร์ จำกัด , บริษัท แลนดี้ โฮม (ประเทศไทย) จำกัด บริษัท , ปทุมดีไซน์ ดีเวลลอป จำกัด  ได้เริ่มเข้าสู่ตลาด และจำนวนบริษัทรับสร้างบ้านเพิ่มขึ้นสูงสุดกว่า 200 ราย
+                        </h4>
+                      </div>
+                    </div>
+                    <div
+                      data-id="2"
+                      class="swiper-slide history-box"
+                      data-swiper-autoplay="5000"
+                    >
+                      <div class="img-box">
+                        <picture>
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-59.png"
+                            type="image/webp"
+                          />
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-59.png"
+                          />
+                          <img
+                            width="530"
+                            height="400"
+                            class="lazyload"
+                            data-src="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-59.png"
+                            alt="Screen Shot 2565-10-11 at 15.11.11"
+                          />
+                        </picture>
+                      </div>
+                      <div class="desc font-face-regular">
+                        <h2 class="title-year font-face-bold" >พ.ศ. 2540
+                        </h2>
+                        <h3 class="head font-face-bold">วิกฤตเศรษฐกิจส่งผลกระทบอย่างรุนแรง ผู้ประกอบการจำนวนมากกว่า 100 ราย</h3>
+                        <h4>
+                          ต้องปิดกิจการ เหลือเพียงบริษัทที่แข็งแกร่งประมาณ 30 ราย อย่างไรก็ดีวิกฤติในครั้งนั้นส่วนหนึ่งก็ส่งผลดี สำหรับผู้ประกอบการที่ยังคงสามารถต่อสู้ยืนหยัดกับสภาพเศรษฐกิจอยู่ได้ และแปรมาเป็น “โอกาส” ในเวลาต่อมา ด้วยการสร้างชื่อเสียง สร้างความเชื่อมั่นขององค์กรและธุรกิจรับสร้างบ้าน จนเป็นที่ยอมรับของผู้บริโภคและประชาชนตลอดจนภาคธุรกิจ 
+
+                        </h4>
+                      </div>
+                    </div>
+                    <div
+                      data-id="3"
+                      class="swiper-slide history-box"
+                      data-swiper-autoplay="5000"
+                    >
+                      <div class="img-box">
+                        <picture>
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-60.png"
+                            type="image/webp"
+                          />
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-60.png"
+                          />
+                          <img
+                            width="530"
+                            height="400"
+                            class="lazyload"
+                            data-src="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-60.png"
+                            alt="Screen Shot 2565-10-11 at 15.08.57"
+                          />
+                        </picture>
+                      </div>
+                      <div class="desc font-face-regular">
+                        <h2 class="title-year font-face-bold">พ.ศ. 2545 – 2547
+                        </h2>
+                        <h3 class="head font-face-bold">เศรษฐกิจเริ่มฟื้นตัว ธุรกิจรับสร้างบ้านกลับมาคึกคักอีกครั้ง</h3>
+                        <h4>
+                          มีผู้ประกอบการใหม่เข้ามากว่า 150 ราย การแข่งขันในตลาดเพิ่มสูงขึ้น แต่ผู้ประกอบการบางรายขาดคุณสมบัติด้านวิศวกรรมและสถาปัตยกรรม ส่งผลเสียต่อภาพรวมของธุรกิจ
+                        </h4>
+                      </div>
+                    </div>
+                    <div
+                      data-id="4"
+                      class="swiper-slide history-box"
+                      data-swiper-autoplay="5000"
+                    >
+                      <div class="img-box">
+                        <picture>
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-61.png"
+                            type="image/webp"
+                          />
+                          <source
+                            data-srcset="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-61.png"
+                          />
+                          <img
+                            width="530"
+                            height="400"
+                            class="lazyload"
+                            data-src="http://localhost/hba-th/hba-th/wordpress/wp-content/uploads/2025/04/Frame-61.png"
+                            alt="Screen Shot 2565-10-11 at 15.13.03"
+                          />
+                        </picture>
+                      </div>
+                      <div class="desc font-face-regular">
+                        <h2 class="title-year font-face-bold">พ.ศ. 2547
+                        </h2>
+                        <h3 class="head font-face-bold">จากบทเรียนวิกฤตเศรษฐกิจ กลุ่มผู้ประกอบการรับสร้างบ้านชั้นนำได้ร่วมมือกันจัดตั้ง</h3>
+                        <h4>
+                          สมาคมธุรกิจรับสร้างบ้าน (Home Builder Association) เพื่อพัฒนามาตรฐานของธุรกิจ สร้างความน่าเชื่อถือ วางเป้าหมายในการขยายธุรกิจทั่วประเทศ พร้อมหาพันธมิตรในการสร้างการเติบโตของภาพรวมธุรกิจรับสร้างบ้านให้ขยายออกไปในวงกว้างหรือทั่วประเทศ
+"สมาคมธุรกิจรับสร้างบ้าน" จึงได้ถือกำเนิดขึ้นเพื่อทำหน้าที่เป็นศูนย์กลางหรือเวทีกลางในความร่วมมือของบรรดาผู้ประกอบการที่มารวมตัวกัน เพื่อจะดำเนินภารกิจต่างๆในการพัฒนาศักยภาพของธุรกิจรับสร้างบ้าน ตั้งแต่ปี 2547 เป็นต้นไป
+
+                        </h4>
+                      </div>
+                    </div>
+                   
+                   
+                    
+                  </div>
+                  <!-- <div class="navigation-box show-xs">
+                    <div class="arrow-box">
+                      <div class="new-st-prev curser-finger history-prev"></div>
+                      <div class="new-st-pagination font-face-bold"></div>
+                      <div class="new-st-next curser-finger history-next"></div>
+                    </div>
+                  </div> -->
+                </div>
+              </div>
+            </div>
+         
+          </div>
+         
+        </div>
+       
+      </section>
+      <footer id="footer">
+       
+     
+      </footer>
+    </div>
+    <script type="text/javascript">
+      function loadcss(url, last) {
+        var head = document.getElementsByTagName("head")[0],
+          link = document.createElement("link");
+        link.type = "text/css";
+        link.rel = "stylesheet";
+        link.href = url;
+        if (last == "first") {
+          link.onload = callbackFunc;
+        }
+        head.appendChild(link);
+        return link;
+      }
+      var callbackFunc = function () {
+        document.getElementsByTagName("body")[0].style.opacity = "1";
+        fadeBodyIn();
+      };
+      loadcss(
+        "https://www.cmg.co.th/css/ad05eb8cfb3cc1c4211b044b91e33e34.css",
+        "last"
+      );
+      loadcss(
+        "https://www.cmg.co.th/css/340c9f4d5753e7c61cf42bc57489ef69.css",
+        "first"
+      );
+    </script>
+    <script type="text/javascript">
+      var BASE_URL = "https://www.cmg.co.th/";
+      var BASE_API = "https://api.cmg.co.th/api/frontend/";
+      var KEY_MAP_API = "AIzaSyCqDklsCTMBnB005T0IzvlW11KtljohlfY";
+      var IMAGE_URL = "https://www.cmg.co.th/";
+      var LANG = "eng";
+      var BASE_URL_LANG = "https://www.cmg.co.th/en/";
+      var FACEBOOK_APP_ID = "xxxx";
+      var GG_CAPTCHA_KEY = "6LfZvy0jAAAAAA--BG_J_cGdHuM7JRnYMV7l-ALF";
+      var NAV_LOC = navigator.geolocation;
+    </script>
+    <div id="fb-root"></div>
+    <script>
+      window.fbAsyncInit = function () {
+        FB.init({
+          appId: "xxxx",
+          autoLogAppEvents: true,
+          xfbml: true,
+          version: "v8.0",
+        });
+      };
+    </script>
+    <script type="text/javascript">
+      function getScript(source, callback) {
+        var el = document.createElement("script");
+        el.onload = callback;
+        el.src = source;
+        document.body.appendChild(el);
+      }
+      var jsMain = "df5f879f5f1abf6b3f74fe64f78556b9.js";
+      var jsName = jsMain.split(".");
+      var jsSub = "3d8bc069772ead9a52ca7fe4cc7cda67.js";
+      jsName.pop();
+      jsName = jsName.join(".");
+      var jsKey = "main_data_script";
+      var isSession = true;
+      if (navigator.userAgent.indexOf("Chrome-Lighthouse") > -1) {
+        isSession = false;
+      } else {
+        isSession = true;
+      }
+      setTimeout(
+        function () {
+          document.getElementById("content").style.opacity = "";
+          document.getElementById("footer").style.opacity = "";
+          getScript(
+            "https://www.cmg.co.th/js/df5f879f5f1abf6b3f74fe64f78556b9.js",
+            function (data, textStatus, jqxhr) {
+              if (jsSub != "blank") {
+                getScript(
+                  "https://www.cmg.co.th/js/3d8bc069772ead9a52ca7fe4cc7cda67.js",
+                  function (data, textStatus, jqxhr) {}
+                );
+              }
+            }
+          );
+        },
+        isSession ? 0 : 3500
+      );
+      sessionStorage.setItem(jsKey, jsName);
+    </script>
+  
+   
+  </body>
+</html>
